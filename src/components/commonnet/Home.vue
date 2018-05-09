@@ -3,7 +3,7 @@
     <v-header></v-header>
     <v-sidebar></v-sidebar>
   <div class="content">
-    <transition name="fade" move="out-in">
+    <transition name="fade" mode="out-in">
        <router-view></router-view>
     </transition>
   </div>
@@ -23,5 +23,17 @@
 
 
 <style>
-
+  .fade-enter {
+    opacity:0;
+  }
+  .fade-leave{
+    opacity:1;
+  }
+  .fade-enter-active{
+    transition:opacity .5s;
+  }
+  .fade-leave-active{
+    opacity:0;
+    transition:opacity .5s;
+  }
 </style>
