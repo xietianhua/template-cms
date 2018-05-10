@@ -7,15 +7,20 @@ import media from '../components/page/media.vue'
 import knowledge from '../components/page/knowledge.vue'
 import table from '../components/page/table.vue'
 import passLongin from '../components/passLongin.vue'
+import mobileLogin from '../components/mobileLogin.vue'
 
 
 export default [
   {
     path:'/passLongin',
     component:passLongin,
-    name:"登陆",
+    name:"用户名密码登陆",
   },
-
+  {
+    path:'/mobileLogin',
+    component:mobileLogin,
+    name:'手机号验证码登陆'
+  },
   {
     path:'/',
     component:Home,

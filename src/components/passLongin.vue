@@ -78,11 +78,6 @@
 </script>
 
 <style lang="scss" scoped>
-  div{
-    width: 100%;
-    height: 100px;
-
-  }
   .login-container {
     /*box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.06), 0 1px 0px 0 rgba(0, 0, 0, 0.02);*/
     -webkit-border-radius: 5px;
