@@ -10,8 +10,13 @@
         </el-form-item>
 
         <el-form-item prop="checkpass">
-          <el-input v-model="loginForm.checkpass" placeholder="密码" type="password">
+          <el-input v-model="loginForm.checkpass" placeholder="密码" type="password" v-if="show" @keyup.enter.native="handleSubmit2">
             <i slot="prefix" class="icon iconfont icon-mima"></i>
+            <i slot="suffix" class="icon iconfont icon-chakanyanjingshishifenxi2" @click="showPassword"></i>
+          </el-input>
+          <el-input v-model="loginForm.checkpass" placeholder="密码" type="text" v-if="!show" @keyup.enter.native="handleSubmit2">
+            <i slot="prefix" class="icon iconfont icon-mima"></i>
+            <i slot="suffix" class="icon iconfont icon-chakanyanjingshishifenxi2" @click="showPassword"></i>
           </el-input>
         </el-form-item>
         <el-checkbox checked class="remember">记住密码</el-checkbox>
@@ -29,6 +34,7 @@
   export default {
     data() {
       return {
+        show:true,
         logining: false,
         loginForm: {
           account: "",
@@ -45,6 +51,10 @@
       }
     },
     methods: {
+
+      showPassword(){
+        this.show = false
+      },
       handleSubmit2(ev) {
         var _this = this;
         this.$refs.ruleForm.validate((valid) => {
@@ -53,17 +63,17 @@
             this.logining = true;
             var loginParams = {username: this.loginForm.account, password: this.loginForm.checkpass};
             requestLogin(loginParams).then(data => {
-              console.log(data);
               this.logining = false;
-              //NProgress.done();
               if (data.data.ErrorCode) {
                 this.$message({
                   message: data.data.ErrorInfo,
                   type: 'error'
                 });
               } else {
-                let user = data.data.username;
+                let user = data.data.data.username;
+                let token =data.data.data.token;
                 sessionStorage.setItem('user', JSON.stringify(user));
+                sessionStorage.setItem('token', token);
                 this.$router.push({path: '/table'});
               }
             });
@@ -100,6 +110,10 @@
         margin-bottom: 20px;
         letter-spacing: 5px;
         color: #ffffff;
+      }
+      .icon-chakanyanjingshishifenxi2{
+        font-size: 20px;
+        cursor: pointer;
       }
     }
   }

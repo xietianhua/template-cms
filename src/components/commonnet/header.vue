@@ -78,7 +78,6 @@
           </el-col>
         </div>
       </el-col>
-
        <!--用户头像模块-->
       <el-col :xs="8" :sm="8" :md="{span:2,offset:2}">
          <div class="user-header">
@@ -90,20 +89,20 @@
              <el-dropdown-menu slot="dropdown">
                <el-dropdown-item >
                  <div class="setting-div">
-                   <span class="setting-icon"><i class="material-icons">account_box</i></span>
+                   <i class="icon iconfont icon-gerenziliao"></i>
                    <span class="setting-string"> Profile 个人</span>
                  </div>
                </el-dropdown-item>
                <el-dropdown-item divided>
                  <div class="setting-div">
-                   <span class="setting-icon"><i class="material-icons">settings</i></span>
+                   <i class="icon iconfont icon-shezhi"></i>
                    <span class="setting-string"> Settings  设置</span>
                  </div>
                </el-dropdown-item>
                <el-dropdown-item divided>
                  <div class="setting-div">
-                   <span class="setting-icon"><i class="material-icons">assignment_return</i></span>
-                   <span class="setting-string"> Sign out  退出</span>
+                   <i class="icon iconfont icon-tuichu"></i>
+                   <span class="setting-string" @click="signOut"> Sign out  退出</span>
                  </div>
                </el-dropdown-item>
              </el-dropdown-menu>
@@ -117,7 +116,7 @@
   export default {
     data(){
       return{
-        username:"天华",
+        username:JSON.parse(sessionStorage.getItem('user')),
         dialogs:[
           {header:'../../static/image/b_header2.jpg',content:'我有一个Style样式需要您帮忙处理以下。',time:'3'},
           {header:'../../static/image/b_header3.jpg',content:'中午一起吃个饭吧，我请客。',time:'15'},
@@ -131,10 +130,16 @@
           {id:3,rank:3,content:'在阿里云进行网站备案，完成后通知组长。',overTime:'2017/3/20'}
         ]
       }
+    },
+    methods:{
+      signOut(){
+        this.$router.push('/mobileLogin')
+      },
     }
-  }
 
+  }
 </script>
+
 
 
 <style>
@@ -188,6 +193,7 @@
     line-height:10px;
     padding-top:7px;
     font-size:12px;
+    cursor: pointer;
   }
   .user-header img{
     border-radius:50%;
@@ -261,11 +267,12 @@
   }
   .setting-div span{
     display:block;
-    float:left;
-    font-size:12px;
+    float:right;
+    font-size:16px;
   }
-  .setting-icon{
+  .icon{
     padding-top:3px;
     padding-right:3px;
+    font-size: 16px;
   }
 </style>

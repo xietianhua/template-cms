@@ -10,6 +10,9 @@ import passLongin from '../components/passLongin.vue'
 import mobileLogin from '../components/mobileLogin.vue'
 
 
+
+
+//注释：单页模板是children下面只有一个path，多页折叠则是children下面有多个path
 export default [
   {
     path:'/passLongin',
@@ -53,6 +56,5 @@ export default [
       {path:'/media',component:media,name:'媒体信息'},
       {path:'/knowledge',component:knowledge,name:'知识产权'},
     ]
-  }
-
+  },
 ]
